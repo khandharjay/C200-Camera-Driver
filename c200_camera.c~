@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <iostream>
-#include <usb.h>
-#include "libusb-1.0/libusb.h"
+#include "../libusb-1.0.9/libusb/libusb.h"
 #include <malloc.h>
 //#include <linux/types.h>
-
+#include <usb.h>
 #include <stdint.h>
 #include <signal.h>
 #include <fcntl.h>
@@ -192,7 +191,7 @@ static void process_image(const void *p, int size)
 
 
 
-static int aborted=0;
+
 static void sighandler(int signum)
 {
   printf("got signal %d", signum);
@@ -209,7 +208,7 @@ static void sighandler(int signum)
 
 void printdev(libusb_device *dev); //prototype of the function
 FILE *outfile;
-
+static int aborted = 0;
 unsigned char* isotrans_buffer =(unsigned char*) malloc(30208);
 unsigned char int_buf[16];
 int mem_h = 0;
@@ -246,7 +245,7 @@ static void capture_callback(struct libusb_transfer *transfer)
 	      process_image(image_buffer,153600);
 	     /*The image_buffer has been consumed by process_image*/
 	     /*So again start filling the buffer from the start*/ 
-	     /* int k;
+	      int k;
 	      for(k=0;k<(int)desc->actual_length;k++)
 		{
 		  if(k>11)
@@ -254,16 +253,12 @@ static void capture_callback(struct libusb_transfer *transfer)
 		      image_buffer[offset] = transfer->buffer[(i*944)+k];
 		      offset++;
 		    }
-		}*/
-
-	       void* buffer_ptr= (void *)transfer->buffer;
-               memcpy((void *) (image_buffer + offset), (const void *)(buffer_ptr +((i*944)+12)),(desc->actual_length)-12);
-	       offset=offset + desc->actual_length -12; 
+		}
 	    }
 	  else
 	    {
 	      /*Keep storing the data received in each packet into the image_buffer*/
-	     /* int k;
+	      int k;
 	      for(k=0;k<(int)desc->actual_length;k++)
 		{
 		  if(k>11)
@@ -271,10 +266,7 @@ static void capture_callback(struct libusb_transfer *transfer)
 		      image_buffer[offset] = transfer->buffer[(i*944)+k];
 		      offset++;
 		    }
-		}*/
-	       void* buffer_ptr= (void *)transfer->buffer;
-               memcpy((void *) (image_buffer + offset), (const void *)(buffer_ptr +((i*944)+12)),(desc->actual_length)-12);
-	       offset=offset + desc->actual_length -12; 
+		}
 	    }
 	  
 	}

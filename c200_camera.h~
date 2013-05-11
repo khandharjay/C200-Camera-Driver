@@ -52,8 +52,8 @@ So size of one isochronous transfer is of 32 x 944 bytes=30208 bytes.
 We send 5 such transfers at the very start,and then whenever the camera sends us back one transfer with the image data, we resubmit this transfer to the camera, to receive the next isochronous transfer.
 
 In the call back, for each isochronous packet we check the actual length of the packet received. 
-Initially the camera sends ischrounous packets with no data, they just have the 12 byte header
-We discard these initial null packets,and in the callback function we resubmit the .
+Initially the camera sends isochronous packets with no data, they just have the 12 byte header
+We discard these initial null packets.
 
 The 12 byte header in each isochronous packet is defined by the UVC spec in the file USB_Video_Payload_Uncompressed_1.5.pdf
 See section 2.4 titled "Stream Header" on page number 8 of that pdf.
@@ -65,6 +65,9 @@ The FID bit toggles when one frame ends and another begins. We monitor this bit 
 
 Now although the isochronous packet can send upto 944 bytes, it does not always send 944 bytes. So we check the actual_length field of the iso packet received and then transfer that many bytes of data to our image_buffer. Roughly for each iso packet we receive upto 620 bytes of data.
 
+When the FID toggles, a new frame has started, so we take the buffer of 153600 bytes and convert it to RGB format.
+
+*/
 
 
 
