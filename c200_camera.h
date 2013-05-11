@@ -6,6 +6,7 @@
 /*A major part of the code has been developed using the UVC Specification 1.5    */
 /*It can be found on http://www.usb.org/developers/devclass_docs/USB_Video_Class_1_5.zip*/
 
+
 /*We used the LibUSB 1.0 library to perform transfer on the USB bus, so that should be installed before running this code*/
 
 /*The part of this code which converts the image from YUV2 to RGB is taken from Sam Siewart's capture.c code*/
