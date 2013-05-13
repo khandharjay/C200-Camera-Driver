@@ -393,7 +393,7 @@ int main()
   
 
 /*Populating the data to be sent for SET_CUR request*/
-/*We did this by referring the 'uvc_set_video_ctrl' function defined in the uvc_video.c file of the Linux USB Driver*/
+/*We did this by referring the 'uvc_set_video_ctrl' function defined in the uvc_video.c file of the Linux UVC Driver found in Linux Source Code*/
 
 
   *(__le16 *)&data[0] = (uint16_t)(0x01); //Supposed to be value of bmHint, unknown to us
