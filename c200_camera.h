@@ -25,7 +25,7 @@ The Video Streaming Interface is used stream the images from the camera, using i
 
 This code streams 30 fps. These are uncompressed frames at 320x240 resolution
 
-We found the initialization procedure for the camera, the USB_Video_FAQ_1.5.pdf, which is in the .zip file in the above link
+We found the initialization procedure for the camera,in the USB_Video_FAQ_1.5.pdf, which is in the .zip file in the above link
 The procedure is described on page 36 of the FAQ pdf, under the title "Stream Format Negotiation (setup for streaming)"
 The steps are as follows
 1.Set the MaxPayloadTransferSize fields to zero (These values will be returned from the device)
