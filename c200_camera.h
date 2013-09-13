@@ -9,7 +9,7 @@
 
 /*We used the LibUSB 1.0 library to perform transfer on the USB bus, so that should be installed before running this code*/
 
-/*The part of this code which converts the image from YUV2 to RGB is taken from Sam Siewart's capture.c code*/
+/*The part of this code which converts the image from YUV2 to RGB is taken from Dr.Sam Siewert's capture.c code*/
 /*We also used usbmon trace facility to check what data is passed to the camera on the USB bus by Sam's capture.c code and tried to send the same packets from our code*/
 
 
